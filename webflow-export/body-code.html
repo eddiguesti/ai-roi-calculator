@@ -1,0 +1,370 @@
+  <div class="container">
+    <div class="header">
+      <h1>Discover Your <span class="gradient-text">AI Agent ROI</span></h1>
+      <p>Calculate how AI agents can transform your tourism & hospitality business with real-time intelligence, 24/7 availability, and 100+ language support</p>
+
+      <div class="header-stats">
+        <div class="stat-pill">
+          <i class="fa-solid fa-robot"></i>
+          <div class="stat-pill-text">
+            <div class="stat-pill-value">28.9% CAGR</div>
+            <div class="stat-pill-label">Market Growth</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-chart-line"></i>
+          <div class="stat-pill-text">
+            <div class="stat-pill-value">80%+ Adoption</div>
+            <div class="stat-pill-label">Hotel Industry</div>
+          </div>
+        </div>
+        <div class="stat-pill">
+          <i class="fa-solid fa-dollar-sign"></i>
+          <div class="stat-pill-text">
+            <div class="stat-pill-value">$198.9B</div>
+            <div class="stat-pill-label">By 2034</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calc-card">
+      <!-- Intro Overlay -->
+      <div class="intro-overlay" id="introOverlay">
+        <div class="intro-overlay-content">
+          <h2>Calculate Your Savings with Our Calculator</h2>
+          <p class="intro-overlay-text">
+            Every business is unique. We start with a <strong>process mapping session</strong> to understand your specific workflows and challenges.
+          </p>
+
+          <div class="intro-overlay-box">
+            <h3><i class="fa-solid fa-sitemap"></i> Tailored Solutions</h3>
+            <p>
+              We design custom AI automations that fit seamlessly into your operations—built specifically for your business needs.
+            </p>
+          </div>
+
+          <button class="intro-start-btn" onclick="startCalculator()">Start</button>
+        </div>
+      </div>
+
+      <div class="progress-bar-container">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+
+      <div class="steps-container">
+        <div class="step-line"></div>
+        <div class="step-indicator active" data-step="1">
+          <div class="step-number">1</div>
+          <div class="step-label">Business Type</div>
+        </div>
+        <div class="step-indicator" data-step="2">
+          <div class="step-number">2</div>
+          <div class="step-label">AI Agents</div>
+        </div>
+        <div class="step-indicator" data-step="3">
+          <div class="step-number">3</div>
+          <div class="step-label">Your Metrics</div>
+        </div>
+        <div class="step-indicator" data-step="4">
+          <div class="step-number">4</div>
+          <div class="step-label">Your ROI</div>
+        </div>
+      </div>
+
+      <div class="content-area">
+        <!-- Step 1 -->
+        <div class="section active" id="step1">
+          <div class="section-header">
+            <h2>Tell us about your business</h2>
+            <p>76% of hotel executives say AI agents are fundamentally transforming the industry</p>
+          </div>
+
+          <h3 style="font-size: 1.25rem; margin-bottom: 1rem; font-weight: 700;">Property Type</h3>
+          <div class="cards-grid">
+            <div class="property-card" data-type="hotel">
+              <span class="card-icon"><i class="fa-solid fa-hotel"></i></span>
+              <div class="card-title">Hotel</div>
+              <div class="card-desc">Traditional hotels, boutique & B&Bs</div>
+            </div>
+            <div class="property-card" data-type="resort">
+              <span class="card-icon"><i class="fa-solid fa-umbrella-beach"></i></span>
+              <div class="card-title">Resort</div>
+              <div class="card-desc">Full-service resorts & vacation properties</div>
+            </div>
+            <div class="property-card" data-type="campsite">
+              <span class="card-icon"><i class="fa-solid fa-campground"></i></span>
+              <div class="card-title">Campsite</div>
+              <div class="card-desc">Campsites, RV parks & glamping sites</div>
+            </div>
+            <div class="property-card" data-type="agency">
+              <span class="card-icon"><i class="fa-solid fa-plane-departure"></i></span>
+              <div class="card-title">Travel Agency</div>
+              <div class="card-desc">Tour operators & travel agencies</div>
+            </div>
+          </div>
+
+          <h3 style="font-size: 1.25rem; margin: 2.5rem 0 1rem; font-weight: 700;">Business Size</h3>
+          <div class="cards-grid">
+            <div class="property-card" data-size="small">
+              <span class="card-icon"><i class="fa-solid fa-seedling"></i></span>
+              <div class="card-title">Small</div>
+              <div class="card-desc">1-50 units or <100 bookings/month</div>
+            </div>
+            <div class="property-card" data-size="medium">
+              <span class="card-icon"><i class="fa-solid fa-chart-line"></i></span>
+              <div class="card-title">Medium</div>
+              <div class="card-desc">50-200 units or 100-500 bookings/month</div>
+            </div>
+            <div class="property-card" data-size="large">
+              <span class="card-icon"><i class="fa-solid fa-rocket"></i></span>
+              <div class="card-title">Large</div>
+              <div class="card-desc">200+ units or 500+ bookings/month</div>
+            </div>
+          </div>
+
+          <div class="btn-container">
+            <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="section" id="step2">
+          <div class="section-header">
+            <h2>Choose your automations</h2>
+            <p>Select the automations that match your needs - practical tools that save time and increase revenue</p>
+          </div>
+
+          <div class="solutions-grid" id="solutionsGrid"></div>
+
+          <div class="btn-container">
+            <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn btn-primary" onclick="nextStep()">Continue</button>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="section" id="step3">
+          <div class="section-header">
+            <h2>Your current operations</h2>
+            <p>Help us calculate your specific ROI with accurate metrics</p>
+          </div>
+
+          <div class="sliders-container" id="slidersContainer"></div>
+
+          <div class="btn-container">
+            <button class="btn btn-secondary" onclick="prevStep()">Back</button>
+            <button class="btn btn-primary" onclick="calculateResults()">Calculate My ROI</button>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="section" id="step4">
+          <div class="results-header">
+            <h2>Your Automation ROI</h2>
+            <p>Based on real-world implementations & industry benchmarks</p>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Total Annual Benefit</div>
+              <div class="stat-value" id="totalBenefit">£0</div>
+              <div class="stat-desc">Combined cost savings + revenue increases</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Time Saved Weekly</div>
+              <div class="stat-value" id="timeSaved">0 hrs</div>
+              <div class="stat-desc">Staff hours freed for guest service</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">ROI Timeline</div>
+              <div class="stat-value" id="roiTimeline">0 mo</div>
+              <div class="stat-desc">Time to recoup your investment</div>
+            </div>
+          </div>
+
+          <div class="charts-container">
+            <div class="chart-card chart-primary">
+              <h3><i class="fa-solid fa-chart-waterfall"></i> Your ROI Breakdown</h3>
+              <canvas id="waterfallChart"></canvas>
+            </div>
+
+            <div class="chart-card chart-secondary">
+              <h3><i class="fa-solid fa-chart-pie"></i> Savings Composition</h3>
+              <canvas id="donutChart"></canvas>
+            </div>
+          </div>
+
+          <div class="personalized-explanation">
+            <h3><i class="fa-solid fa-user-check"></i> Why You'll Achieve These Results</h3>
+            <div id="personalizedExplanation"></div>
+          </div>
+
+          <div class="insights-card">
+            <h3><i class="fa-solid fa-lightbulb"></i> Automation Insights</h3>
+            <div id="insightsContainer"></div>
+          </div>
+
+          <div class="cta-card">
+            <h3>Ready to Automate Your Business?</h3>
+            <p>Schedule a free consultation to discuss your custom automation solutions</p>
+            <a href="https://calendly.com/jengu-meeting/30min" target="_blank" class="btn-cta">
+              Book Your Free Consultation
+            </a>
+          </div>
+
+          <div class="btn-container">
+            <button class="btn btn-secondary" onclick="resetCalculator()">Start Over</button>
+          </div>
+        </div>
+
+        <!-- Step 5: Custom Software Inquiry Form -->
+        <div class="section" id="step5">
+          <div class="custom-inquiry-header">
+            <h2>🎯 Tell Us About Your Custom AI Software Need</h2>
+            <p>We specialize in building bespoke AI solutions that solve your unique business challenges. Share your requirements and we'll get back to you within 24 hours with a custom proposal.</p>
+          </div>
+
+          <div class="custom-inquiry-card">
+            <form id="customInquiryForm" onsubmit="submitCustomInquiry(event)">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="fullName">Full Name *</label>
+                  <input type="text" id="fullName" name="fullName" required placeholder="John Smith">
+                </div>
+                <div class="form-group">
+                  <label for="companyName">Company/Property Name *</label>
+                  <input type="text" id="companyName" name="companyName" required placeholder="Sunshine Resort & Spa">
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input type="email" id="email" name="email" required placeholder="john@sunshineresort.com">
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" placeholder="+44 123 456 7890">
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label for="businessChallenge">What Business Challenge Are You Trying to Solve? *</label>
+                <textarea id="businessChallenge" name="businessChallenge" required rows="4" placeholder="Example: We need a system to automatically sync bookings between our PMS, channel manager, and accounting software, with real-time inventory updates..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="currentSystems">What Systems Do You Currently Use?</label>
+                <textarea id="currentSystems" name="currentSystems" rows="3" placeholder="Example: Opera PMS, SiteMinder channel manager, Xero accounting, Mailchimp for email..."></textarea>
+              </div>
+
+              <div class="form-group">
+                <label for="desiredOutcome">What's Your Desired Outcome?</label>
+                <textarea id="desiredOutcome" name="desiredOutcome" rows="3" placeholder="Example: Save 10 hours per week on manual data entry, eliminate double bookings, get real-time revenue reports..."></textarea>
+              </div>
+
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="timeline">Desired Implementation Timeline</label>
+                  <select id="timeline" name="timeline">
+                    <option value="">Select timeline...</option>
+                    <option value="urgent">Urgent (ASAP)</option>
+                    <option value="1-2-months">1-2 Months</option>
+                    <option value="3-6-months">3-6 Months</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="budget">Estimated Budget (Optional)</label>
+                  <select id="budget" name="budget">
+                    <option value="">Select budget range...</option>
+                    <option value="under-5k">Under £5,000</option>
+                    <option value="5k-15k">£5,000 - £15,000</option>
+                    <option value="15k-30k">£15,000 - £30,000</option>
+                    <option value="30k-plus">£30,000+</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="goBackFromCustom()">
+                  <i class="fa-solid fa-arrow-left"></i> Back to Automations
+                </button>
+                <button type="submit" class="btn btn-primary btn-submit">
+                  <i class="fa-solid fa-paper-plane"></i> Submit Inquiry
+                </button>
+              </div>
+            </form>
+          </div>
+
+          <div class="custom-inquiry-benefits">
+            <h3>What Happens Next?</h3>
+            <div class="benefit-grid">
+              <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="benefit-content">
+                  <h4>24-Hour Response</h4>
+                  <p>We'll review your requirements and respond within one business day</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-video"></i></div>
+                <div class="benefit-content">
+                  <h4>Discovery Call</h4>
+                  <p>30-minute video call to understand your needs in detail</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-file-contract"></i></div>
+                <div class="benefit-content">
+                  <h4>Custom Proposal</h4>
+                  <p>Detailed technical proposal with timeline and pricing</p>
+                </div>
+              </div>
+              <div class="benefit-item">
+                <div class="benefit-icon"><i class="fa-solid fa-rocket"></i></div>
+                <div class="benefit-content">
+                  <h4>Fast Implementation</h4>
+                  <p>Most custom solutions deployed within 4-8 weeks</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 6: Thank You / Confirmation -->
+        <div class="section" id="step6">
+          <div class="thank-you-card">
+            <div class="thank-you-icon">
+              <i class="fa-solid fa-check-circle"></i>
+            </div>
+            <h2>Thank You for Your Inquiry!</h2>
+            <p class="thank-you-message">We've received your custom AI software request and will review it immediately. Our team will contact you within 24 hours to discuss your project.</p>
+
+            <div class="confirmation-details">
+              <h3>What We'll Do Next:</h3>
+              <ul class="confirmation-list">
+                <li><i class="fa-solid fa-check"></i> Review your specific requirements and business challenge</li>
+                <li><i class="fa-solid fa-check"></i> Research the best AI technologies for your use case</li>
+                <li><i class="fa-solid fa-check"></i> Prepare a preliminary technical approach</li>
+                <li><i class="fa-solid fa-check"></i> Reach out via email to schedule a discovery call</li>
+              </ul>
+            </div>
+
+            <div class="next-steps-cta">
+              <h3>While You Wait...</h3>
+              <p>Schedule a free consultation to discuss your automation needs in detail</p>
+              <a href="https://calendly.com/jengu-meeting/30min" target="_blank" class="btn-cta">
+                <i class="fa-solid fa-calendar"></i> Book Free Consultation
+              </a>
+            </div>
+
+            <div class="btn-container">
+              <button class="btn btn-secondary" onclick="resetCalculator()">Start Over</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
