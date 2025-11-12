@@ -4,7 +4,16 @@
       "Bash(dir)",
       "Bash(copy \"Hospitality calculator · HTML.txt\" \"calculator.html\")",
       "Bash(dir:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(\"C:\\Users\\eddgu\\Downloads\\calculator\\webflow-export\\head-code.html\")",
+      "Bash(\"C:\\Users\\eddgu\\Downloads\\calculator\\webflow-export\\body-code.html\")",
+      "Bash(\"C:\\Users\\eddgu\\Downloads\\calculator\\webflow-export\\footer-code.html\")",
+      "Bash(echo:*)",
+      "Bash(git remote add:*)",
+      "Bash(git branch:*)",
+      "Bash(git push:*)",
+      "Bash(start https://github.com/eddiguesti/ai-roi-calculator/settings/pages)"
     ],
     "deny": [],
     "ask": []
