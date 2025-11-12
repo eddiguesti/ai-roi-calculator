@@ -1178,13 +1178,14 @@
 
     /* Spline Scene Container */
     .spline-container {
-      width: 100%;
-      height: 600px;
-      margin: 4rem 0 2rem;
-      border-radius: 24px;
+      width: 100vw;
+      height: 100vh;
+      margin: 0;
+      margin-left: calc(-50vw + 50%);
+      border-radius: 0;
       overflow: visible;
       background: var(--spotify-darker);
-      box-shadow: var(--shadow-lg);
+      box-shadow: none;
       position: relative;
     }
 
@@ -1215,7 +1216,7 @@
       .stats-grid { grid-template-columns: 1fr; }
       .btn-container { flex-direction: column; }
       .btn { width: 100%; }
-      .spline-container { height: 400px; margin: 2rem 0 1rem; }
+      .spline-container { height: 100vh; width: 100vw; margin: 0; margin-left: calc(-50vw + 50%); }
     }
 
     /* Tablet view - 2 columns for symmetry */
