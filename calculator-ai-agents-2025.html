@@ -37,6 +37,199 @@
       --shadow-glow: 0 0 40px rgba(29, 185, 84, 0.3);
     }
 
+    /* Preloader Styles */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-content {
+      text-align: center;
+      position: relative;
+    }
+
+    .preloader-logo {
+      font-size: 5rem;
+      font-weight: 900;
+      letter-spacing: -0.05em;
+      margin-bottom: 2rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .preloader-logo .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(30px) rotateX(-90deg);
+      animation: letterReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    .preloader-logo .letter:nth-child(1) { animation-delay: 0.1s; }
+    .preloader-logo .letter:nth-child(2) { animation-delay: 0.2s; }
+    .preloader-logo .letter:nth-child(3) { animation-delay: 0.3s; }
+    .preloader-logo .letter:nth-child(4) { animation-delay: 0.4s; }
+    .preloader-logo .letter:nth-child(5) { animation-delay: 0.5s; }
+
+    .preloader-logo .letter.j {
+      background: linear-gradient(135deg, #1DB954 0%, #00D2FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .preloader-logo .letter.e {
+      background: linear-gradient(135deg, #00D2FF 0%, #6161FF 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .preloader-logo .letter.n {
+      background: linear-gradient(135deg, #6161FF 0%, #FF5AC4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .preloader-logo .letter.g {
+      background: linear-gradient(135deg, #FF5AC4 0%, #FFCB00 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .preloader-logo .letter.u {
+      background: linear-gradient(135deg, #FFCB00 0%, #1DB954 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes letterReveal {
+      0% {
+        opacity: 0;
+        transform: translateY(30px) rotateX(-90deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
+      }
+    }
+
+    .preloader-tagline {
+      font-size: 1rem;
+      color: #B3B3B3;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      opacity: 0;
+      animation: fadeInUp 0.6s ease 0.8s forwards;
+      margin-bottom: 3rem;
+    }
+
+    .preloader-bars {
+      display: flex;
+      gap: 0.5rem;
+      justify-content: center;
+      align-items: flex-end;
+      height: 60px;
+    }
+
+    .preloader-bar {
+      width: 8px;
+      background: linear-gradient(180deg, #1DB954 0%, #00D2FF 50%, #6161FF 100%);
+      border-radius: 4px;
+      animation: barPulse 1.2s ease-in-out infinite;
+    }
+
+    .preloader-bar:nth-child(1) { animation-delay: 0s; }
+    .preloader-bar:nth-child(2) { animation-delay: 0.1s; }
+    .preloader-bar:nth-child(3) { animation-delay: 0.2s; }
+    .preloader-bar:nth-child(4) { animation-delay: 0.3s; }
+    .preloader-bar:nth-child(5) { animation-delay: 0.4s; }
+
+    @keyframes barPulse {
+      0%, 100% {
+        height: 20px;
+        opacity: 0.5;
+      }
+      50% {
+        height: 60px;
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .preloader-particles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: #1DB954;
+      border-radius: 50%;
+      opacity: 0;
+      animation: particleFloat 3s ease-in-out infinite;
+    }
+
+    .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+    .particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+    .particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+    .particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+    .particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+    .particle:nth-child(6) { left: 60%; animation-delay: 0.3s; }
+    .particle:nth-child(7) { left: 70%; animation-delay: 0.8s; }
+    .particle:nth-child(8) { left: 80%; animation-delay: 1.3s; }
+    .particle:nth-child(9) { left: 90%; animation-delay: 1.8s; }
+
+    @keyframes particleFloat {
+      0% {
+        bottom: 0;
+        opacity: 0;
+      }
+      25% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+      }
+    }
+
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--spotify-darker);
@@ -1474,6 +1667,34 @@
   </style>
 </head>
 <body>
+  <!-- Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-particles">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="preloader-content">
+      <div class="preloader-logo">
+        <span class="letter j">J</span><span class="letter e">e</span><span class="letter n">n</span><span class="letter g">g</span><span class="letter u">u</span>
+      </div>
+      <div class="preloader-tagline">AI-Powered Solutions</div>
+      <div class="preloader-bars">
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+        <div class="preloader-bar"></div>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
     <div class="header">
       <h1>Discover Your <span class="gradient-text">AI Agent ROI</span></h1>
@@ -2369,6 +2590,19 @@
       averageRoomRate: { label: 'Average room rate per night', min: 30, max: 500, step: 10, default: 100, format: (v) => '£' + v },
       occupancyRate: { label: 'Current occupancy rate', min: 30, max: 100, step: 5, default: 70, format: (v) => v + '%' }
     };
+
+    // Preloader
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        preloader.classList.add('hidden');
+
+        // Remove preloader from DOM after fade out
+        setTimeout(() => {
+          preloader.remove();
+        }, 600);
+      }, 2000); // Show preloader for 2 seconds
+    });
 
     document.addEventListener('DOMContentLoaded', () => {
       setupPropertyCards();
