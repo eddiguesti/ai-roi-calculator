@@ -101,6 +101,83 @@
       100% { background-position: 0% 50%; }
     }
 
+    @keyframes morphToCircle {
+      0% {
+        opacity: 0;
+        border-radius: 8px;
+        transform: translateY(50px) rotate(0deg) scale(0.5);
+      }
+      50% {
+        border-radius: 30%;
+        transform: translateY(-10px) rotate(180deg) scale(1.1);
+      }
+      100% {
+        opacity: 1;
+        border-radius: 50%;
+        transform: translateY(0) rotate(360deg) scale(1);
+      }
+    }
+
+    @keyframes iconBounce {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      25% {
+        transform: translateY(-10px) scale(1.1);
+      }
+      50% {
+        transform: translateY(0) scale(1);
+      }
+      75% {
+        transform: translateY(-5px) scale(1.05);
+      }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      }
+      50% {
+        box-shadow: 0 15px 50px rgba(249, 115, 22, 0.3);
+      }
+    }
+
+    @keyframes borderSpin {
+      0% {
+        transform: rotate(0deg);
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: rotate(360deg);
+        opacity: 1;
+      }
+    }
+
+    @keyframes numberCount {
+      from {
+        opacity: 0;
+        transform: scale(0.5);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes slideInScale {
+      0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+
     .animate-on-scroll {
       opacity: 0;
       transform: translateY(30px);
@@ -271,24 +348,50 @@
       border-radius: 50px;
       font-weight: 600;
       text-decoration: none;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       font-size: 1.1rem;
       cursor: pointer;
       border: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+
+    .btn:hover::before {
+      width: 300px;
+      height: 300px;
     }
 
     .btn-primary {
       background: var(--jengu-gradient);
       color: white;
       box-shadow: 0 4px 20px rgba(249, 115, 22, 0.3);
+      background-size: 200% 200%;
+      animation: gradientShift 3s ease infinite;
     }
 
     .btn-primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(249, 115, 22, 0.4);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 40px rgba(249, 115, 22, 0.5);
+    }
+
+    .btn-primary:active {
+      transform: translateY(-2px) scale(1.02);
     }
 
     .btn-secondary {
@@ -300,7 +403,12 @@
     .btn-secondary:hover {
       background: var(--jengu-orange);
       color: white;
-      transform: translateY(-3px);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(249, 115, 22, 0.3);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(-2px) scale(1.02);
     }
 
     .hero-visual {
@@ -321,11 +429,28 @@
       border-radius: 20px;
       box-shadow: var(--shadow);
       text-align: center;
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .stat-card:hover::before {
+      left: 100%;
     }
 
     .stat-card:hover {
-      transform: translateY(-5px);
+      transform: translateY(-10px) scale(1.05);
       box-shadow: var(--shadow-lg);
     }
 
@@ -338,6 +463,7 @@
       background-clip: text;
       margin-bottom: 0.5rem;
       display: block;
+      animation: numberCount 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
 
     .stat-label {
@@ -421,9 +547,29 @@
       justify-content: center;
       text-align: center;
       overflow: visible;
+      cursor: pointer;
+    }
+
+    .feature-card.visible {
+      animation: morphToCircle 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
     }
 
     .feature-card::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: -5px;
+      right: -5px;
+      bottom: -5px;
+      border-radius: 50%;
+      background: var(--jengu-gradient);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.5s ease;
+      filter: blur(20px);
+    }
+
+    .feature-card::after {
       content: '';
       position: absolute;
       top: 0;
@@ -432,21 +578,29 @@
       bottom: 0;
       border-radius: 50%;
       border: 3px solid transparent;
-      background: var(--jengu-gradient) border-box;
+      background: linear-gradient(135deg, #f97316, #eb5d02, #fbbf24) border-box;
       -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: all 0.5s ease;
+      animation: borderSpin 3s linear infinite;
+      animation-play-state: paused;
     }
 
     .feature-card:hover::before {
+      opacity: 0.6;
+    }
+
+    .feature-card:hover::after {
       opacity: 1;
+      animation-play-state: running;
     }
 
     .feature-card:hover {
-      transform: translateY(-15px) scale(1.05);
-      box-shadow: 0 20px 60px rgba(249, 115, 22, 0.2);
+      transform: translateY(-20px) scale(1.08);
+      box-shadow: 0 25px 70px rgba(249, 115, 22, 0.25);
+      animation: glowPulse 2s ease-in-out infinite;
     }
 
     .feature-icon {
@@ -460,13 +614,36 @@
       margin-bottom: 1rem;
       font-size: 2.2rem;
       color: white;
-      transition: all 0.5s ease;
+      transition: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
       box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
+      position: relative;
+    }
+
+    .feature-icon::before {
+      content: '';
+      position: absolute;
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #fbbf24, #f97316, #eb5d02);
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      animation: borderSpin 2s linear infinite;
+      animation-play-state: paused;
     }
 
     .feature-card:hover .feature-icon {
-      transform: scale(1.15) rotate(360deg);
-      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.5);
+      transform: scale(1.2) rotate(360deg);
+      box-shadow: 0 15px 40px rgba(249, 115, 22, 0.6);
+      animation: iconBounce 1s ease-in-out infinite;
+    }
+
+    .feature-card:hover .feature-icon::before {
+      opacity: 1;
+      animation-play-state: running;
     }
 
     .feature-card h3 {
@@ -522,12 +699,30 @@
       background: white;
       border-radius: 16px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .benefit-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: var(--jengu-gradient);
+      transform: scaleY(0);
+      transition: transform 0.4s ease;
+    }
+
+    .benefit-item:hover::before {
+      transform: scaleY(1);
     }
 
     .benefit-item:hover {
-      transform: translateX(10px);
-      box-shadow: 0 6px 30px rgba(249, 115, 22, 0.15);
+      transform: translateX(15px);
+      box-shadow: 0 8px 40px rgba(249, 115, 22, 0.2);
     }
 
     .benefit-icon {
@@ -541,6 +736,13 @@
       color: white;
       font-size: 1.5rem;
       flex-shrink: 0;
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+    }
+
+    .benefit-item:hover .benefit-icon {
+      transform: rotate(360deg) scale(1.1);
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.4);
     }
 
     .benefit-text h4 {
@@ -701,6 +903,13 @@
     .trust-badge {
       text-align: center;
       padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      border-radius: 20px;
+    }
+
+    .trust-badge:hover {
+      transform: translateY(-10px);
+      background: rgba(249, 115, 22, 0.05);
     }
 
     .trust-icon {
@@ -709,12 +918,23 @@
       margin-bottom: 1rem;
       display: inline-block;
       animation: float 3s ease-in-out infinite;
+      transition: all 0.4s ease;
+    }
+
+    .trust-badge:hover .trust-icon {
+      transform: scale(1.2) rotate(10deg);
+      animation: iconBounce 1s ease-in-out infinite;
     }
 
     .trust-badge h4 {
       font-size: 1.3rem;
       margin-bottom: 0.5rem;
       color: var(--dark);
+      transition: color 0.3s ease;
+    }
+
+    .trust-badge:hover h4 {
+      color: var(--jengu-orange);
     }
 
     .trust-badge p {
@@ -1243,9 +1463,93 @@
       });
     });
 
-    // Add staggered animation delays
+    // Add staggered animation delays for feature cards morphing
     document.querySelectorAll('.feature-card').forEach((card, index) => {
-      card.style.transitionDelay = `${index * 0.1}s`;
+      card.style.animationDelay = `${index * 0.15}s`;
+    });
+
+    // Add parallax effect to hero background
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const parallaxElements = document.querySelectorAll('.hero::before, .hero::after');
+      parallaxElements.forEach((el, index) => {
+        const speed = index === 0 ? 0.5 : 0.3;
+        el.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    });
+
+    // Add magnetic effect to buttons
+    document.querySelectorAll('.btn, .cta-btn-large').forEach(button => {
+      button.addEventListener('mousemove', (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        button.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px) translateY(-5px) scale(1.05)`;
+      });
+
+      button.addEventListener('mouseleave', () => {
+        button.style.transform = '';
+      });
+    });
+
+    // Add tilt effect to feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+
+        const rotateX = (y - centerY) / 10;
+        const rotateY = (centerX - x) / 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-20px) scale(1.08)`;
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    // Number counter animation
+    const animateNumber = (element, target) => {
+      const duration = 2000;
+      const start = 0;
+      const increment = target / (duration / 16);
+      let current = start;
+
+      const timer = setInterval(() => {
+        current += increment;
+        if (current >= target) {
+          element.textContent = target;
+          clearInterval(timer);
+        } else {
+          element.textContent = Math.floor(current);
+        }
+      }, 16);
+    };
+
+    // Observe stat numbers and trigger count animation
+    const statObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const statCard = entry.target;
+          const number = statCard.querySelector('.stat-number');
+          const text = number.textContent;
+
+          // Extract number if present (for demo purposes, just trigger animation)
+          statCard.style.animation = 'slideInScale 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards';
+
+          statObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-card').forEach(card => {
+      statObserver.observe(card);
     });
   </script>
 
