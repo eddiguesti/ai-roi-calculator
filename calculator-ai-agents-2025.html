@@ -255,11 +255,16 @@
 
     body {
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: var(--spotify-darker);
+      background: #000000;
       color: var(--spotify-text);
       min-height: 100vh;
+      margin: 0;
       padding: 0;
       overflow-x: hidden;
+    }
+
+    body.loaded {
+      background: var(--spotify-darker);
       background-image:
         radial-gradient(ellipse at top left, rgba(29, 185, 84, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at bottom right, rgba(97, 97, 255, 0.08) 0%, transparent 50%);
@@ -269,6 +274,12 @@
       max-width: 1400px;
       margin: 0 auto;
       padding: 3rem 2rem 4rem;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+
+    body.loaded .container {
+      opacity: 1;
     }
 
     /* Introductory Section Styles */
@@ -2619,6 +2630,9 @@
       setTimeout(() => {
         const preloader = document.getElementById('preloader');
         preloader.classList.add('hidden');
+
+        // Add loaded class to body to show content
+        document.body.classList.add('loaded');
 
         // Remove preloader from DOM after fade out
         setTimeout(() => {
