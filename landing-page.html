@@ -104,17 +104,20 @@
     @keyframes morphToCircle {
       0% {
         opacity: 0;
-        border-radius: 8px;
-        transform: translateY(50px) rotate(0deg) scale(0.5);
-      }
-      50% {
-        border-radius: 30%;
-        transform: translateY(-10px) rotate(180deg) scale(1.1);
+        transform: translateY(30px) scale(0.9);
       }
       100% {
         opacity: 1;
-        border-radius: 50%;
-        transform: translateY(0) rotate(360deg) scale(1);
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes subtleFloat {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
       }
     }
 
@@ -261,6 +264,28 @@
       padding-top: 80px;
     }
 
+    .hero-spline-background {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: auto;
+    }
+
+    .hero-spline-background::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 245, 240, 0.7) 70%, transparent 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+
     .hero::before {
       content: '';
       position: absolute;
@@ -271,6 +296,7 @@
       background: radial-gradient(circle, rgba(249, 115, 22, 0.1) 0%, transparent 70%);
       border-radius: 50%;
       animation: pulse 8s ease-in-out infinite;
+      z-index: 0;
     }
 
     .hero::after {
@@ -283,22 +309,22 @@
       background: radial-gradient(circle, rgba(235, 93, 2, 0.08) 0%, transparent 70%);
       border-radius: 50%;
       animation: float 10s ease-in-out infinite;
+      z-index: 0;
     }
 
     .hero-container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 4rem 2rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
 
     .hero-content {
       animation: slideInLeft 1s cubic-bezier(0.16, 1, 0.3, 1);
+      max-width: 600px;
+      position: relative;
+      z-index: 2;
     }
 
     .hero-badge {
@@ -411,29 +437,24 @@
       transform: translateY(-2px) scale(1.02);
     }
 
-    .hero-visual {
-      position: relative;
-      height: 100%;
-      min-height: 600px;
-      animation: slideInRight 1s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
     .spline-container {
-      position: absolute;
-      top: 50%;
-      right: 0;
-      transform: translateY(-50%);
       width: 100%;
       height: 100%;
-      min-height: 600px;
-      pointer-events: auto;
+      position: relative;
     }
 
-    .spline-container iframe {
+    .spline-container spline-viewer {
       width: 100%;
       height: 100%;
-      border: none;
-      display: block;
+    }
+
+    /* Hide Spline logo */
+    .spline-container spline-viewer::part(logo) {
+      display: none !important;
+    }
+
+    spline-viewer {
+      --spline-logo-display: none !important;
     }
 
     /* Stats Section */
@@ -1056,13 +1077,8 @@
         font-size: 3rem;
       }
 
-      .hero-visual {
-        order: -1;
-        min-height: 400px;
-      }
-
-      .spline-container {
-        min-height: 400px;
+      .hero-content {
+        max-width: 100%;
       }
 
       .footer-container {
@@ -1086,14 +1102,6 @@
 
       .benefits-content h2 {
         font-size: 2rem;
-      }
-
-      .hero-visual {
-        min-height: 350px;
-      }
-
-      .spline-container {
-        min-height: 350px;
       }
 
       .stats-container {
@@ -1162,6 +1170,15 @@
 
   <!-- Hero Section -->
   <section class="hero">
+    <!-- Full-width Spline Background -->
+    <div class="hero-spline-background">
+      <div class="spline-container">
+        <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
+        <spline-viewer url="https://prod.spline.design/u0k9uWnu51Qp6daH/scene.splinecode" style="width: 100%; height: 100%; display: block;"></spline-viewer>
+      </div>
+    </div>
+
+    <!-- Content on top of Spline -->
     <div class="hero-container">
       <div class="hero-content">
         <span class="hero-badge">AI-Powered Tourism Solutions</span>
@@ -1178,12 +1195,6 @@
           <a href="https://www.jengu.ai" class="btn btn-secondary">
             Learn More
           </a>
-        </div>
-      </div>
-      <div class="hero-visual">
-        <div class="spline-container">
-          <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.28/build/spline-viewer.js"></script>
-          <spline-viewer url="https://prod.spline.design/u0k9uWnu51Qp6daH/scene.splinecode" style="width: 100%; height: 100%;"></spline-viewer>
         </div>
       </div>
     </div>
