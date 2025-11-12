@@ -383,19 +383,44 @@
     .features-grid {
       max-width: 1400px;
       margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .features-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      gap: 3rem;
+      width: 100%;
+      justify-items: center;
+    }
+
+    .features-row-top {
+      grid-template-columns: repeat(4, 1fr);
+      max-width: 1400px;
+    }
+
+    .features-row-bottom {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 700px;
     }
 
     .feature-card {
       background: white;
-      padding: 3rem;
-      border-radius: 24px;
-      box-shadow: 0 5px 30px rgba(0, 0, 0, 0.08);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      padding: 2.5rem;
+      border-radius: 50%;
+      width: 280px;
+      height: 280px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
-      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: visible;
     }
 
     .feature-card::before {
@@ -404,49 +429,62 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 4px;
-      background: var(--jengu-gradient);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s ease;
+      bottom: 0;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      background: var(--jengu-gradient) border-box;
+      -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.4s ease;
     }
 
     .feature-card:hover::before {
-      transform: scaleX(1);
+      opacity: 1;
     }
 
     .feature-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 50px rgba(249, 115, 22, 0.15);
+      transform: translateY(-15px) scale(1.05);
+      box-shadow: 0 20px 60px rgba(249, 115, 22, 0.2);
     }
 
     .feature-icon {
-      width: 70px;
-      height: 70px;
+      width: 80px;
+      height: 80px;
       background: var(--jengu-gradient);
-      border-radius: 18px;
+      border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
+      margin-bottom: 1rem;
+      font-size: 2.2rem;
       color: white;
-      transition: all 0.3s ease;
+      transition: all 0.5s ease;
+      box-shadow: 0 8px 20px rgba(249, 115, 22, 0.3);
     }
 
     .feature-card:hover .feature-icon {
-      transform: scale(1.1) rotate(5deg);
+      transform: scale(1.15) rotate(360deg);
+      box-shadow: 0 12px 30px rgba(249, 115, 22, 0.5);
     }
 
     .feature-card h3 {
-      font-size: 1.5rem;
-      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
       color: var(--dark);
+      font-weight: 700;
+      line-height: 1.3;
     }
 
     .feature-card p {
       color: var(--gray);
-      line-height: 1.8;
+      line-height: 1.5;
+      font-size: 0.85rem;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
 
     /* Benefits Section */
@@ -749,6 +787,17 @@
     }
 
     /* Responsive */
+    @media (max-width: 1200px) {
+      .features-row-top {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 700px;
+      }
+
+      .features-row-bottom {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     @media (max-width: 1024px) {
       .hero-container,
       .benefits-container {
@@ -791,7 +840,32 @@
         grid-template-columns: 1fr;
       }
 
-      .feature-card,
+      .features-row-top,
+      .features-row-bottom {
+        grid-template-columns: 1fr;
+        max-width: 280px;
+      }
+
+      .feature-card {
+        width: 260px;
+        height: 260px;
+        padding: 2rem;
+      }
+
+      .feature-icon {
+        width: 70px;
+        height: 70px;
+        font-size: 1.8rem;
+      }
+
+      .feature-card h3 {
+        font-size: 1rem;
+      }
+
+      .feature-card p {
+        font-size: 0.8rem;
+      }
+
       .benefit-item {
         padding: 2rem;
       }
@@ -873,47 +947,54 @@
       <p>Industry-leading AI solutions designed to solve your biggest operational challenges</p>
     </div>
     <div class="features-grid">
-      <div class="feature-card animate-on-scroll">
-        <div class="feature-icon">
-          <i class="fas fa-robot"></i>
+      <!-- Top Row: 4 Cards -->
+      <div class="features-row features-row-top">
+        <div class="feature-card animate-on-scroll">
+          <div class="feature-icon">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>Intelligent Email Automation</h3>
+          <p>AI sorts and responds to emails 24/7, cutting response time by 90%</p>
         </div>
-        <h3>Intelligent Email Automation</h3>
-        <p>AI automatically sorts, prioritizes, and responds to guest emails 24/7, reducing response time by 90% while maintaining a personal touch.</p>
+        <div class="feature-card animate-on-scroll" style="transition-delay: 0.1s;">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Dynamic Pricing Engine</h3>
+          <p>Real-time optimization increases revenue by 25% with zero manual work</p>
+        </div>
+        <div class="feature-card animate-on-scroll" style="transition-delay: 0.2s;">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-check"></i>
+          </div>
+          <h3>Smart Booking Assistant</h3>
+          <p>AI chatbot converts 35% more browsers into confirmed bookings</p>
+        </div>
+        <div class="feature-card animate-on-scroll" style="transition-delay: 0.3s;">
+          <div class="feature-icon">
+            <i class="fas fa-network-wired"></i>
+          </div>
+          <h3>Seamless Integration</h3>
+          <p>Connect PMS, CRM, and channels in hours with ongoing support</p>
+        </div>
       </div>
-      <div class="feature-card animate-on-scroll" style="transition-delay: 0.1s;">
-        <div class="feature-icon">
-          <i class="fas fa-chart-line"></i>
+
+      <!-- Bottom Row: 2 Cards -->
+      <div class="features-row features-row-bottom">
+        <div class="feature-card animate-on-scroll" style="transition-delay: 0.4s;">
+          <div class="feature-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h3>Enterprise Security</h3>
+          <p>Bank-level encryption, GDPR compliance, 99.9% uptime SLA guaranteed</p>
         </div>
-        <h3>Dynamic Pricing Engine</h3>
-        <p>Real-time price optimization based on demand, seasonality, and competitor analysis. Increase revenue by up to 25% with zero manual work.</p>
-      </div>
-      <div class="feature-card animate-on-scroll" style="transition-delay: 0.2s;">
-        <div class="feature-icon">
-          <i class="fas fa-calendar-check"></i>
+        <div class="feature-card animate-on-scroll" style="transition-delay: 0.5s;">
+          <div class="feature-icon">
+            <i class="fas fa-headset"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Dedicated account manager and technical support in your timezone</p>
         </div>
-        <h3>Smart Booking Assistant</h3>
-        <p>AI-powered chatbot handles reservations, modifications, and guest inquiries instantly, converting 35% more browsers into bookings.</p>
-      </div>
-      <div class="feature-card animate-on-scroll" style="transition-delay: 0.3s;">
-        <div class="feature-icon">
-          <i class="fas fa-network-wired"></i>
-        </div>
-        <h3>Seamless Integration</h3>
-        <p>Connect with your existing PMS, CRM, and channel managers. Setup takes hours, not weeks, with ongoing support included.</p>
-      </div>
-      <div class="feature-card animate-on-scroll" style="transition-delay: 0.4s;">
-        <div class="feature-icon">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <h3>Enterprise Security</h3>
-        <p>Bank-level encryption, GDPR compliance, and 99.9% uptime SLA. Your guest data stays completely secure and private.</p>
-      </div>
-      <div class="feature-card animate-on-scroll" style="transition-delay: 0.5s;">
-        <div class="feature-icon">
-          <i class="fas fa-headset"></i>
-        </div>
-        <h3>24/7 Support</h3>
-        <p>Dedicated account manager and round-the-clock technical support. We're here whenever you need us, in your timezone.</p>
       </div>
     </div>
   </section>
