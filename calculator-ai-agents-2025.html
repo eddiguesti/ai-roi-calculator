@@ -37,7 +37,7 @@
       --shadow-glow: 0 0 40px rgba(29, 185, 84, 0.3);
     }
 
-    /* Preloader Styles */
+    /* Preloader Styles - Advanced 3D Animation */
     .preloader {
       position: fixed;
       top: 0;
@@ -49,15 +49,33 @@
       align-items: center;
       justify-content: center;
       z-index: 99999;
-      transition: opacity 0.8s ease, visibility 0.8s ease;
+      transition: opacity 1s ease, visibility 1s ease;
       margin: 0;
       padding: 0;
       overflow: hidden;
+      perspective: 1000px;
     }
 
     .preloader.hidden {
       opacity: 0;
       visibility: hidden;
+    }
+
+    .preloader-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(29, 185, 84, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(97, 97, 255, 0.15) 0%, transparent 50%);
+      animation: bgPulse 4s ease-in-out infinite;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
     }
 
     .preloader-content {
@@ -67,35 +85,42 @@
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
+      z-index: 2;
     }
 
     .preloader-logo {
-      font-size: 6rem;
+      font-size: 7rem;
       font-weight: 900;
-      letter-spacing: -0.05em;
-      margin-bottom: 2.5rem;
+      letter-spacing: 0.1em;
+      margin-bottom: 3rem;
       position: relative;
       display: inline-block;
+      transform-style: preserve-3d;
     }
 
     .preloader-logo .letter {
       display: inline-block;
       opacity: 0;
-      transform: translateY(30px) rotateX(-90deg);
-      animation: letterReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transform: translateZ(-200px) rotateY(-180deg) scale(0.5);
+      animation: letter3DReveal 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+      text-shadow:
+        0 0 20px rgba(29, 185, 84, 0.5),
+        0 0 40px rgba(29, 185, 84, 0.3),
+        0 0 60px rgba(29, 185, 84, 0.2);
     }
 
-    .preloader-logo .letter:nth-child(1) { animation-delay: 0.1s; }
-    .preloader-logo .letter:nth-child(2) { animation-delay: 0.2s; }
-    .preloader-logo .letter:nth-child(3) { animation-delay: 0.3s; }
-    .preloader-logo .letter:nth-child(4) { animation-delay: 0.4s; }
-    .preloader-logo .letter:nth-child(5) { animation-delay: 0.5s; }
+    .preloader-logo .letter:nth-child(1) { animation-delay: 0.2s; }
+    .preloader-logo .letter:nth-child(2) { animation-delay: 0.4s; }
+    .preloader-logo .letter:nth-child(3) { animation-delay: 0.6s; }
+    .preloader-logo .letter:nth-child(4) { animation-delay: 0.8s; }
+    .preloader-logo .letter:nth-child(5) { animation-delay: 1s; }
 
     .preloader-logo .letter.j {
       background: linear-gradient(135deg, #1DB954 0%, #00D2FF 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(29, 185, 84, 0.8));
     }
 
     .preloader-logo .letter.e {
@@ -103,6 +128,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.8));
     }
 
     .preloader-logo .letter.n {
@@ -110,6 +136,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(97, 97, 255, 0.8));
     }
 
     .preloader-logo .letter.g {
@@ -117,6 +144,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(255, 90, 196, 0.8));
     }
 
     .preloader-logo .letter.u {
@@ -124,16 +152,20 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
+      filter: drop-shadow(0 0 10px rgba(255, 203, 0, 0.8));
     }
 
-    @keyframes letterReveal {
+    @keyframes letter3DReveal {
       0% {
         opacity: 0;
-        transform: translateY(30px) rotateX(-90deg);
+        transform: translateZ(-200px) rotateY(-180deg) scale(0.5);
+      }
+      60% {
+        transform: translateZ(20px) rotateY(10deg) scale(1.1);
       }
       100% {
         opacity: 1;
-        transform: translateY(0) rotateX(0deg);
+        transform: translateZ(0) rotateY(0deg) scale(1);
       }
     }
 
@@ -1703,6 +1735,7 @@
 <body>
   <!-- Preloader -->
   <div class="preloader" id="preloader">
+    <div class="preloader-bg"></div>
     <div class="preloader-particles">
       <div class="particle"></div>
       <div class="particle"></div>
