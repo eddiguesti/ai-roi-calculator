@@ -1,19 +1,149 @@
-# Quick Start Guide - New Calculator
+# Quick Start - Deploy to Webflow in 5 Minutes
 
-## 🚀 Getting Started
-
-### Open the Calculator
-Simply open **`calculator-redesigned.html`** in any modern browser:
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
-No installation, no server, no dependencies needed!
+## Your Repository
+✅ **GitHub**: https://github.com/eddiguesti/ai-roi-calculator
 
 ---
 
-## 📖 How to Use (4 Simple Steps)
+## 🚀 Fastest Way to Deploy (Recommended)
+
+### Step 1: Enable GitHub Pages (2 minutes)
+
+1. **Click this link**: https://github.com/eddiguesti/ai-roi-calculator/settings/pages
+2. Under **"Source"**, select:
+   - Branch: `main`
+   - Folder: `/ (root)`
+3. Click **"Save"**
+4. Wait 1-2 minutes for deployment
+
+### Step 2: Add to Webflow (2 minutes)
+
+1. Open your Webflow project
+2. Go to the page where you want the calculator
+3. Drag an **Embed element** onto the page
+4. **Copy and paste this code**:
+
+```html
+<iframe
+  src="https://eddiguesti.github.io/ai-roi-calculator/calculator-ai-agents-2025.html"
+  width="100%"
+  height="1400px"
+  frameborder="0"
+  style="border: none; display: block; min-height: 1400px; background: #000000;"
+  title="AI ROI Calculator"
+  loading="lazy">
+</iframe>
+```
+
+5. Click **"Save & Close"**
+6. **Publish** your Webflow site
+7. **Done!** 🎉
+
+---
+
+## 🔄 Alternative: Direct Embed (No GitHub Pages Needed)
+
+### Quick & Simple Method
+
+1. Open: [calculator-ai-agents-2025.html](calculator-ai-agents-2025.html)
+2. Press **Ctrl+A** (select all)
+3. Press **Ctrl+C** (copy)
+4. In Webflow:
+   - Add **Embed element**
+   - Click **"Edit Custom Code"**
+   - Press **Ctrl+V** (paste)
+   - Set height to `1400px`
+   - Click **"Save & Close"**
+5. **Publish**
+
+---
+
+## 📋 Professional Split Method
+
+For better organization and performance:
+
+1. **Page Settings → Custom Code → Inside `<head>` tag**:
+   - Open `webflow-export/head-code.html`
+   - Copy all → Paste → Save
+
+2. **Add Embed element to page**:
+   - Open `webflow-export/body-code.html`
+   - Copy all → Paste → Save
+
+3. **Page Settings → Custom Code → Before `</body>` tag**:
+   - Open `webflow-export/footer-code.html`
+   - Copy all → Paste → Save
+
+4. **Publish**
+
+---
+
+## ✅ Verify It Works
+
+After publishing, check:
+- Calculator loads on your page
+- Intro overlay appears
+- "Start" button works
+- All 4 steps function correctly
+- Charts display properly
+- Form validates correctly
+
+---
+
+## 💡 Which Method Should You Use?
+
+| Method | Best For | Pros | Cons |
+|--------|----------|------|------|
+| **GitHub Pages + iFrame** | Production sites | Easy updates, fast, no Webflow limits | Requires GitHub Pages |
+| **Direct Embed** | Quick testing | Fastest to deploy | Harder to update |
+| **Split Method** | Maximum control | Best organization | More setup steps |
+
+**My Recommendation**: Use **GitHub Pages + iFrame** for your production site. It's the most professional and easiest to maintain.
+
+---
+
+## 🔧 Need to Update the Calculator Later?
+
+### If using GitHub Pages method:
+
+```bash
+cd "C:\Users\eddgu\Downloads\calculator"
+git add .
+git commit -m "Update calculator"
+git push
+```
+
+Wait 1 minute - changes go live automatically on your Webflow site!
+
+### If using Direct Embed or Split method:
+
+1. Edit the file locally
+2. Copy the new code
+3. Paste into Webflow
+4. Publish
+
+---
+
+## 📞 Help & Documentation
+
+- 📖 **Full guide**: [WEBFLOW_DEPLOY_STEPS.md](WEBFLOW_DEPLOY_STEPS.md)
+- 💻 **Git commands**: [GIT_COMMANDS.md](GIT_COMMANDS.md)
+- 🚀 **All deployment options**: [DEPLOYMENT.md](DEPLOYMENT.md)
+- 📂 **Webflow files**: `webflow-export/` folder
+
+---
+
+## 🎯 Your Next Step
+
+**Right now**, go to: https://github.com/eddiguesti/ai-roi-calculator/settings/pages
+
+Enable GitHub Pages, then add the iFrame code to Webflow.
+
+**You'll be live in 5 minutes!** 🚀
+
+---
+
+## 📖 How the Calculator Works (4 Simple Steps)
 
 ### Step 1: Business Info (30 seconds)
 1. **Select your property type**:
