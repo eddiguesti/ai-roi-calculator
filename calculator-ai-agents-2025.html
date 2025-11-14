@@ -14,65 +14,24 @@
       box-sizing: border-box;
     }
 
-    /* CRITICAL: Hide everything except preloader on load */
     html {
-      background: #000000 !important;
-      overflow: hidden !important;
-      margin: 0 !important;
-      padding: 0 !important;
-      border: none !important;
-      outline: none !important;
-    }
-
-    html::before,
-    html::after {
-      display: none !important;
-    }
-
-    body > *:not(.preloader) {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-    }
-
-    body.loaded > *:not(.preloader) {
-      display: block !important;
-    }
-
-    /* Override any Webflow navbar or fixed elements */
-    nav,
-    header,
-    .nav,
-    .navbar,
-    .header,
-    [class*="nav"],
-    [class*="header"],
-    [id*="nav"],
-    [id*="header"] {
-      display: none !important;
-      opacity: 0 !important;
-      visibility: hidden !important;
-      z-index: -1 !important;
-    }
-
-    body.loaded nav,
-    body.loaded header,
-    body.loaded .nav,
-    body.loaded .navbar,
-    body.loaded .header,
-    body.loaded [class*="nav"],
-    body.loaded [class*="header"],
-    body.loaded [id*="nav"],
-    body.loaded [id*="header"] {
-      display: block !important;
-      opacity: 1 !important;
-      visibility: visible !important;
-      z-index: auto !important;
+      background: #000000;
+      margin: 0;
+      padding: 0;
     }
 
     :root {
-      --spotify-green: #1DB954;
-      --spotify-green-hover: #1ED760;
+      /* Brand Colors - Matching Landing Page */
+      --primary-brand: #1E40AF;
+      --secondary-brand: #06B6D4;
+      --primary-cta: #F97316;
+      --primary-cta-hover: #EA580C;
+      --secondary-cta: #10B981;
+      --accent-highlight: #FBBF24;
+
+      /* Calculator Dark Theme */
+      --spotify-green: var(--secondary-cta);
+      --spotify-green-hover: var(--secondary-brand);
       --spotify-dark: #121212;
       --spotify-darker: #000000;
       --spotify-light: #181818;
@@ -80,17 +39,27 @@
       --spotify-gray: #535353;
       --spotify-text: #FFFFFF;
       --spotify-text-muted: #B3B3B3;
-      --monday-purple: #6161FF;
-      --monday-pink: #FF5AC4;
-      --monday-orange: #FFCB00;
-      --monday-blue: #00D2FF;
-      --gradient-primary: linear-gradient(135deg, var(--spotify-green) 0%, var(--monday-blue) 100%);
-      --gradient-accent: linear-gradient(135deg, var(--monday-purple) 0%, var(--monday-pink) 100%);
-      --gradient-warm: linear-gradient(135deg, var(--monday-orange) 0%, var(--monday-pink) 100%);
+      --monday-purple: var(--primary-brand);
+      --monday-pink: var(--primary-cta);
+      --monday-orange: var(--accent-highlight);
+      --monday-blue: var(--secondary-brand);
+      --gradient-primary: linear-gradient(135deg, var(--secondary-brand) 0%, var(--primary-brand) 100%);
+      --gradient-accent: linear-gradient(135deg, var(--primary-cta) 0%, var(--primary-cta-hover) 100%);
+      --gradient-warm: linear-gradient(135deg, var(--accent-highlight) 0%, var(--primary-cta) 100%);
       --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
       --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.6);
       --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.8);
-      --shadow-glow: 0 0 40px rgba(29, 185, 84, 0.3);
+      --shadow-glow: 0 0 40px rgba(6, 182, 212, 0.3);
+    }
+
+    /* Hide scrollbar but keep scroll functionality */
+    * {
+      scrollbar-width: none; /* Firefox */
+      -ms-overflow-style: none; /* IE and Edge */
+    }
+
+    *::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera */
     }
 
     /* Preloader Styles - Advanced 3D Animation */
@@ -127,8 +96,8 @@
       width: 100%;
       height: 100%;
       background:
-        radial-gradient(circle at 20% 50%, rgba(29, 185, 84, 0.15) 0%, transparent 50%),
-        radial-gradient(circle at 80% 50%, rgba(97, 97, 255, 0.15) 0%, transparent 50%);
+        radial-gradient(circle at 20% 50%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(30, 64, 175, 0.15) 0%, transparent 50%);
       animation: bgPulse 4s ease-in-out infinite;
     }
 
@@ -163,9 +132,9 @@
       transform: translateZ(-200px) rotateY(-180deg) scale(0.5);
       animation: letter3DReveal 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
       text-shadow:
-        0 0 20px rgba(29, 185, 84, 0.5),
-        0 0 40px rgba(29, 185, 84, 0.3),
-        0 0 60px rgba(29, 185, 84, 0.2);
+        0 0 20px rgba(16, 185, 129, 0.5),
+        0 0 40px rgba(16, 185, 129, 0.3),
+        0 0 60px rgba(16, 185, 129, 0.2);
     }
 
     .preloader-logo .letter:nth-child(1) { animation-delay: 0.2s; }
@@ -175,43 +144,43 @@
     .preloader-logo .letter:nth-child(5) { animation-delay: 1s; }
 
     .preloader-logo .letter.j {
-      background: linear-gradient(135deg, #1DB954 0%, #00D2FF 100%);
+      background: linear-gradient(135deg, var(--secondary-cta) 0%, var(--secondary-brand) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(29, 185, 84, 0.8));
+      filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.8));
     }
 
     .preloader-logo .letter.e {
-      background: linear-gradient(135deg, #00D2FF 0%, #6161FF 100%);
+      background: linear-gradient(135deg, var(--secondary-brand) 0%, var(--primary-brand) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(0, 210, 255, 0.8));
+      filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.8));
     }
 
     .preloader-logo .letter.n {
-      background: linear-gradient(135deg, #6161FF 0%, #FF5AC4 100%);
+      background: linear-gradient(135deg, var(--primary-brand) 0%, var(--primary-cta) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(97, 97, 255, 0.8));
+      filter: drop-shadow(0 0 10px rgba(30, 64, 175, 0.8));
     }
 
     .preloader-logo .letter.g {
-      background: linear-gradient(135deg, #FF5AC4 0%, #FFCB00 100%);
+      background: linear-gradient(135deg, var(--primary-cta) 0%, var(--accent-highlight) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(255, 90, 196, 0.8));
+      filter: drop-shadow(0 0 10px rgba(249, 115, 22, 0.8));
     }
 
     .preloader-logo .letter.u {
-      background: linear-gradient(135deg, #FFCB00 0%, #1DB954 100%);
+      background: linear-gradient(135deg, var(--accent-highlight) 0%, var(--secondary-cta) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 10px rgba(255, 203, 0, 0.8));
+      filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.8));
     }
 
     @keyframes letter3DReveal {
@@ -248,7 +217,7 @@
 
     .preloader-bar {
       width: 8px;
-      background: linear-gradient(180deg, #1DB954 0%, #00D2FF 50%, #6161FF 100%);
+      background: linear-gradient(180deg, #10B981 0%, #06B6D4 50%, #1E40AF 100%);
       border-radius: 4px;
       animation: barPulse 1.2s ease-in-out infinite;
     }
@@ -295,7 +264,7 @@
       position: absolute;
       width: 3px;
       height: 3px;
-      background: #1DB954;
+      background: #10B981;
       border-radius: 50%;
       opacity: 0;
       animation: particleFloat 3s ease-in-out infinite;
@@ -385,8 +354,8 @@
     body.loaded {
       background: var(--spotify-darker) !important;
       background-image:
-        radial-gradient(ellipse at top left, rgba(29, 185, 84, 0.08) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom right, rgba(97, 97, 255, 0.08) 0%, transparent 50%) !important;
+        radial-gradient(ellipse at top left, rgba(1, 164, 164, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(4, 59, 114, 0.08) 0%, transparent 50%) !important;
     }
 
     .container {
@@ -428,7 +397,7 @@
 
     .intro-section .intro-highlight {
       background: var(--spotify-light);
-      border: 1px solid rgba(29, 185, 84, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.2);
       border-radius: 12px;
       padding: 2rem 2.5rem;
       max-width: 800px;
@@ -547,8 +516,8 @@
     }
 
     .intro-overlay-box {
-      background: rgba(29, 185, 84, 0.08);
-      border: 2px solid rgba(29, 185, 84, 0.3);
+      background: rgba(16, 185, 129, 0.08);
+      border: 2px solid rgba(16, 185, 129, 0.3);
       border-radius: 16px;
       padding: 2rem 2.5rem;
       margin-bottom: 2.5rem;
@@ -587,7 +556,7 @@
       font-weight: 700;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 24px rgba(29, 185, 84, 0.3);
+      box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
       animation: slideUp 0.6s ease 0.6s backwards;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -595,7 +564,7 @@
 
     .intro-start-btn:hover {
       transform: translateY(-4px) scale(1.05);
-      box-shadow: 0 12px 32px rgba(29, 185, 84, 0.5);
+      box-shadow: 0 12px 32px rgba(16, 185, 129, 0.5);
       background: #23d45f;
     }
 
@@ -648,10 +617,10 @@
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      background: rgba(29, 185, 84, 0.1);
+      background: rgba(16, 185, 129, 0.1);
       padding: 0.75rem 1.5rem;
       border-radius: 50px;
-      border: 1px solid rgba(29, 185, 84, 0.3);
+      border: 1px solid rgba(16, 185, 129, 0.3);
     }
 
     .stat-pill i {
@@ -700,7 +669,7 @@
       background: var(--gradient-primary);
       transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       width: 0%;
-      box-shadow: 0 0 20px rgba(29, 185, 84, 0.5);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
     }
 
     .steps-container {
@@ -831,8 +800,8 @@
 
     .property-card.selected {
       border-color: var(--spotify-green);
-      background: rgba(29, 185, 84, 0.08);
-      box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.2);
+      background: rgba(16, 185, 129, 0.08);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
     }
 
     .card-icon {
@@ -883,7 +852,7 @@
 
     .solution-card.selected {
       border-color: var(--spotify-green);
-      background: rgba(29, 185, 84, 0.08);
+      background: rgba(16, 185, 129, 0.08);
     }
 
     .solution-card .info-icon {
@@ -893,7 +862,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: rgba(29, 185, 84, 0.2);
+      background: rgba(16, 185, 129, 0.2);
       color: var(--spotify-green);
       display: flex;
       align-items: center;
@@ -986,7 +955,7 @@
 
     .tooltip-stat {
       flex: 1;
-      background: rgba(29, 185, 84, 0.1);
+      background: rgba(16, 185, 129, 0.1);
       padding: 0.5rem;
       border-radius: 6px;
       text-align: center;
@@ -1030,17 +999,17 @@
     }
 
     .badge-time {
-      background: rgba(29, 185, 84, 0.15);
+      background: rgba(16, 185, 129, 0.15);
       color: var(--spotify-green);
     }
 
     .badge-revenue {
-      background: rgba(0, 210, 255, 0.15);
+      background: rgba(6, 182, 212, 0.15);
       color: var(--monday-blue);
     }
 
     .badge-conversion {
-      background: rgba(97, 97, 255, 0.15);
+      background: rgba(30, 64, 175, 0.15);
       color: var(--monday-purple);
     }
 
@@ -1058,7 +1027,7 @@
     }
 
     .slider-group:hover {
-      border-color: rgba(29, 185, 84, 0.3);
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
     .slider-header {
@@ -1099,7 +1068,7 @@
       border-radius: 50%;
       background: var(--spotify-green);
       cursor: pointer;
-      box-shadow: 0 2px 8px rgba(29, 185, 84, 0.5);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
       transition: all 0.2s;
     }
 
@@ -1114,7 +1083,7 @@
       background: var(--spotify-green);
       cursor: pointer;
       border: none;
-      box-shadow: 0 2px 8px rgba(29, 185, 84, 0.5);
+      box-shadow: 0 2px 8px rgba(16, 185, 129, 0.5);
     }
 
     .slider-range {
@@ -1210,7 +1179,7 @@
     .stat-card:hover {
       transform: translateY(-4px);
       box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
-      border-color: rgba(29, 185, 84, 0.3);
+      border-color: rgba(16, 185, 129, 0.3);
     }
 
     .stat-card:nth-child(1) { animation-delay: 0.1s; }
@@ -1306,14 +1275,14 @@
       left: 0;
       right: 0;
       height: 4px;
-      background: linear-gradient(90deg, #1DB954 0%, #00D2FF 50%, #6161FF 100%);
+      background: linear-gradient(90deg, #10B981 0%, #06B6D4 50%, #1E40AF 100%);
     }
 
     .personalized-explanation {
-      background: linear-gradient(135deg, rgba(29, 185, 84, 0.08), rgba(0, 210, 255, 0.08));
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(6, 182, 212, 0.08));
       padding: 2.5rem;
       border-radius: 16px;
-      border: 2px solid rgba(29, 185, 84, 0.25);
+      border: 2px solid rgba(16, 185, 129, 0.25);
       margin-bottom: 2rem;
       animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.6s backwards;
     }
@@ -1387,10 +1356,10 @@
     }
 
     .insights-card {
-      background: linear-gradient(135deg, rgba(29, 185, 84, 0.05), rgba(97, 97, 255, 0.05));
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.05), rgba(30, 64, 175, 0.05));
       padding: 2rem;
       border-radius: 16px;
-      border: 1px solid rgba(29, 185, 84, 0.2);
+      border: 1px solid rgba(16, 185, 129, 0.2);
       animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.7s backwards;
     }
 
@@ -1419,7 +1388,7 @@
 
     .insight-item:hover {
       background: rgba(255, 255, 255, 0.06);
-      border-color: rgba(29, 185, 84, 0.2);
+      border-color: rgba(16, 185, 129, 0.2);
       transform: translateX(4px);
     }
 
@@ -1532,7 +1501,7 @@
       .steps-container { padding: 1.5rem 1rem 0.5rem; gap: 0.5rem; }
       .step-number { width: 40px; height: 40px; font-size: 1rem; }
       .step-label { font-size: 0.75rem; }
-      .content-area { padding: 1.5rem 1rem 2rem; }
+      .content-area { padding: 1.5rem 2rem 2rem; }
       .section-header h2 { font-size: 1.75rem; }
       .cards-grid { grid-template-columns: 1fr; gap: 1rem; }
       .solutions-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
@@ -1617,7 +1586,7 @@
     .form-group select:focus {
       outline: none;
       border-color: var(--spotify-green);
-      background: rgba(29, 185, 84, 0.05);
+      background: rgba(16, 185, 129, 0.05);
     }
 
     .form-group textarea {
@@ -1667,7 +1636,7 @@
 
     .benefit-item:hover {
       transform: translateY(-4px);
-      border-color: rgba(29, 185, 84, 0.3);
+      border-color: rgba(16, 185, 129, 0.3);
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
@@ -1675,7 +1644,7 @@
       flex-shrink: 0;
       width: 50px;
       height: 50px;
-      background: rgba(29, 185, 84, 0.15);
+      background: rgba(16, 185, 129, 0.15);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -1821,36 +1790,7 @@
     }
   </style>
 </head>
-<body>
-  <!-- Preloader -->
-  <div class="preloader" id="preloader">
-    <div class="preloader-bg"></div>
-    <div class="preloader-particles">
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-      <div class="particle"></div>
-    </div>
-    <div class="preloader-content">
-      <div class="preloader-logo">
-        <span class="letter j">J</span><span class="letter e">e</span><span class="letter n">n</span><span class="letter g">g</span><span class="letter u">u</span>
-      </div>
-      <div class="preloader-tagline">AI-Powered Solutions</div>
-      <div class="preloader-bars">
-        <div class="preloader-bar"></div>
-        <div class="preloader-bar"></div>
-        <div class="preloader-bar"></div>
-        <div class="preloader-bar"></div>
-        <div class="preloader-bar"></div>
-      </div>
-    </div>
-  </div>
-
+<body class="loaded">
   <div class="container">
     <div class="header">
       <h1>Discover Your <span class="gradient-text">AI Agent ROI</span></h1>
@@ -2747,22 +2687,6 @@
       occupancyRate: { label: 'Current occupancy rate', min: 30, max: 100, step: 5, default: 70, format: (v) => v + '%' }
     };
 
-    // Preloader
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        const preloader = document.getElementById('preloader');
-        preloader.classList.add('hidden');
-
-        // Add loaded class to body to show content
-        document.body.classList.add('loaded');
-
-        // Remove preloader from DOM after fade out
-        setTimeout(() => {
-          preloader.remove();
-        }, 800);
-      }, 3500); // Show preloader for 3.5 seconds
-    });
-
     document.addEventListener('DOMContentLoaded', () => {
       setupPropertyCards();
       updateProgress();
@@ -3442,10 +3366,10 @@
       // Colors: transparent for start, green for savings, cyan for revenue, purple for conversion, green for total
       const backgroundColors = [
         'rgba(255, 255, 255, 0)',
-        'rgba(29, 185, 84, 0.85)',
-        'rgba(0, 210, 255, 0.85)',
-        'rgba(97, 97, 255, 0.85)',
-        'rgba(29, 185, 84, 0.95)'
+        'rgba(16, 185, 129, 0.85)',
+        'rgba(6, 182, 212, 0.85)',
+        'rgba(30, 64, 175, 0.85)',
+        'rgba(16, 185, 129, 0.95)'
       ];
 
       waterfallChart = new Chart(ctx, {
@@ -3457,10 +3381,10 @@
             backgroundColor: backgroundColors,
             borderColor: [
               'rgba(255, 255, 255, 0)',
-              'rgba(29, 185, 84, 1)',
-              'rgba(0, 210, 255, 1)',
-              'rgba(97, 97, 255, 1)',
-              'rgba(29, 185, 84, 1)'
+              'rgba(16, 185, 129, 1)',
+              'rgba(6, 182, 212, 1)',
+              'rgba(30, 64, 175, 1)',
+              'rgba(16, 185, 129, 1)'
             ],
             borderWidth: 2,
             borderRadius: 8,
@@ -3477,7 +3401,7 @@
               backgroundColor: 'rgba(24, 24, 24, 0.95)',
               titleColor: '#FFFFFF',
               bodyColor: '#FFFFFF',
-              borderColor: '#1DB954',
+              borderColor: '#10B981',
               borderWidth: 2,
               padding: 16,
               cornerRadius: 8,
@@ -3553,17 +3477,17 @@
       if (savedCost > 0) {
         data.push(savedCost);
         labels.push('Cost Savings');
-        colors.push('rgba(29, 185, 84, 0.9)');
+        colors.push('rgba(16, 185, 129, 0.9)');
       }
       if (additionalRevenue > 0) {
         data.push(additionalRevenue);
         labels.push('Revenue Growth');
-        colors.push('rgba(0, 210, 255, 0.9)');
+        colors.push('rgba(6, 182, 212, 0.9)');
       }
       if (conversionRevenue > 0) {
         data.push(conversionRevenue);
         labels.push('Conversion Boost');
-        colors.push('rgba(97, 97, 255, 0.9)');
+        colors.push('rgba(30, 64, 175, 0.9)');
       }
 
       donutChart = new Chart(ctx, {
@@ -3601,7 +3525,7 @@
               backgroundColor: 'rgba(24, 24, 24, 0.95)',
               titleColor: '#FFFFFF',
               bodyColor: '#FFFFFF',
-              borderColor: '#1DB954',
+              borderColor: '#10B981',
               borderWidth: 2,
               padding: 16,
               cornerRadius: 8,
