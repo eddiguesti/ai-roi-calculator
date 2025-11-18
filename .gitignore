@@ -33,3 +33,14 @@ dist/
 build/
 *.min.js
 *.min.css
+
+# Archive folder - not tracked in git
+archive/
+
+# Nested git repositories
+jengu-website-astro/
+
+# Unwanted files
+*.torrent
+*.exe
+nul
